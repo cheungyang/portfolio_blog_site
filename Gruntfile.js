@@ -422,7 +422,7 @@ module.exports = function (grunt) {
     // Test settings
     karma: {
       unit: {
-        configFile: 'karma.conf.js',
+        configFile: './config/karma.conf.js',
         singleRun: true
       }
     },
@@ -436,7 +436,7 @@ module.exports = function (grunt) {
 
     protractor: {
       options: {
-        configFile: 'protractor.conf.js'
+        configFile: './config/protractor.conf.js'
       },
       chrome: {
         options: {
