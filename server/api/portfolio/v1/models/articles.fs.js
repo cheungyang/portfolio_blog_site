@@ -19,9 +19,9 @@ exports.get = function(ids) {
       json = require(filename);
       json.status = 200;
     } catch (err){
+      json.id = id;
       json.status = 404;
     }
-    json.id = id;
     jsonArr.push(json);
   }
   return jsonArr;

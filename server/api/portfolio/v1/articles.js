@@ -3,15 +3,26 @@
 var now = require("performance-now");
 var _ = require('lodash');
 
+var model = require("./models/articles.fs");
 var VERSION = "v1";
 
 // Get list of things
 exports.ids = function(req, res) {
   var start = now();
   var ids = req.params.ids.split(";");
+  var results = model.get(ids);
 
+  // Fetch related articles
+  for(var i=results.length-1; i>=0; i--) {
+    var related_articles_ids = results[i].related_article_ids;
+    if (related_articles_ids) {
+      results[i].related_articles = model.get(related_articles_ids);
+    }
+  }
 
   res.json({
+    results: results,
+    size: results.length,
     _req: {
       params: req.params,
       query: req.query,
