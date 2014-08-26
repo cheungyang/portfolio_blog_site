@@ -1,0 +1,22 @@
+<div class="article">
+  <h1 class="title">{{article.title}}</h1>
+  <img class="cover" src="{{article.cover_image}}"/>
+  <div class="tags">
+    <ul ng-repeat="tag in article.tags">
+      <li>{{tag}}</li>
+    </ul>
+  </div>
+  <div class="date">{{article.date}}</div>
+  <p class="summary expanded" ng-bind-html="article.summary"/>
+  <p class="content collapsed" ng-bind-html="article.content"/>
+  <div class="related">
+    <ul ng-repeat="related in article.related_articles">
+      <li>
+        <a href="{{related.url}}">
+          <img class="cover" src="{{related.cover_image}}"/></span>
+          <h3 class="title">{{related.title}}</h3>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -31,7 +31,12 @@ module.exports = function(config) {
       'client/components/**/*.jade',
       'client/app/**/*.html',
       'client/components/**/*.html',
-      'tests/unit/client/**/*.js'
+      'tests/unit/client/**/*.js',
+      // JSON
+      { pattern:  '/test/unit/client/**.*.json',
+        watched:  true,
+        served:   true,
+        included: false }
     ],
 
     preprocessors: {
