@@ -1,0 +1,27 @@
+.blog-article {
+  .blog-cover {
+    height: 200px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  ul.blog-tags {
+    padding: 10px 0px;
+    li {
+      float: left;
+      list-style-type: none;
+      padding-right: 10px;
+    }
+  }
+
+  ul.blog-related {
+    li {
+      list-style-type: none;
+    }
+    h3 {
+      font-size: 14px;
+    }
+  }
+}

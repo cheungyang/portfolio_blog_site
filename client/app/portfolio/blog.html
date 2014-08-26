@@ -1,22 +1,41 @@
-<div class="article">
-  <h1 class="title">{{article.title}}</h1>
-  <img class="cover" src="{{article.cover_image}}"/>
-  <div class="tags">
-    <ul ng-repeat="tag in article.tags">
-      <li>{{tag}}</li>
-    </ul>
+<div class="blog-article">
+  <div class="page-header">
+    <h1 class="blog-title">{{article.title}}</h1>
+    <small class="blog-date">{{article.date}}</small>
   </div>
-  <div class="date">{{article.date}}</div>
-  <p class="summary expanded" ng-bind-html="article.summary"/>
-  <p class="content collapsed" ng-bind-html="article.content"/>
-  <div class="related">
-    <ul ng-repeat="related in article.related_articles">
-      <li>
-        <a href="{{related.url}}">
-          <img class="cover" src="{{related.cover_image}}"/></span>
-          <h3 class="title">{{related.title}}</h3>
-        </a>
-      </li>
-    </ul>
+
+  <div class="blog-cover">
+    <img src="{{article.cover_image}}"/>
   </div>
+
+  <ul class="blog-tags">
+    <li ng-repeat="tag in article.tags"><span class="label label-primary">{{tag}}</span></li>
+  </ul>
+
+  <div class="blog-summary panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-11">
+          <p ng-bind-html="article.summary"/>
+        </div>
+        <div class="col-sm-1">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          <span class="glyphicon glyphicon-chevron-up"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="blog-content" ng-bind-html="article.content"/>
+
+  <ul class="blog-related">
+    <li class="col-xs-6 col-md-3" ng-repeat="related in article.related_articles">
+      <a href="{{related.url}}">
+        <div class="blog-cover thumbnail">
+          <img src="{{related.cover_image}}"/>
+          <h3 class="blog-title">{{related.title}}</h3>
+        </div>
+      </a>
+    </li>
+  </ul>
 </div>

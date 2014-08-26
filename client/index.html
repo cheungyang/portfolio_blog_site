@@ -22,8 +22,53 @@
     <!-- endbuild -->
   </head>
   <body ng-app="portfolioBlogSiteApp">
-    <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">localhost:9000</a>
+        </div>
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="cat1">Cat1</a></li>
+            <li><a href="cat1">Cat2</a></li>
+            <li><a href="cat3">Cat3</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <br/><br/><br/>
+
+    <div class="container" role="main">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="hidden-print hidden-xs hidden-sm affix" role="complementary">
+            <ul class="nav">
+                <li class="">
+                  <a href="#overview">Overview</a>
+                  <ul class="nav">
+                    <li><a href="#overview-doctype">HTML5 doctype</a></li>
+                    <li><a href="#overview-mobile">Mobile first</a></li>
+                    <li class=""><a href="#overview-type-links">Typography and links</a></li>
+                    <li class=""><a href="#overview-normalize">Normalize.css</a></li>
+                    <li class=""><a href="#overview-container">Containers</a></li>
+                  </ul>
+                </li>
+            </ul>
+          </div>
+        </div><!-- /.col-sm-12 -->
+        <div class="col-sm-9">
+          <div ui-view=""></div>
+        </div><!-- /.col-sm-12 -->
+      </div>
+    </div> <!-- /container -->
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
