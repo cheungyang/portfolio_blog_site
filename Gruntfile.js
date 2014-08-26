@@ -31,6 +31,9 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       client: require('./bower.json').appPath || 'client',
+      unitServer: require('./bower.json').unitServerTestsPath || 'tests/unit/server',
+      unitClient: require('./bower.json').unitClientTestsPath || 'tests/unit/client',
+      integ: require('./bower.json').integTestsPath || 'tests/integration',
       dist: 'dist'
     },
     express: {
@@ -70,13 +73,13 @@ module.exports = function (grunt) {
         tasks: ['injector:css']
       },
       mochaTest: {
-        files: ['server/**/*.spec.js'],
+        files: ['<%= yeoman.unitServer %>/**/*.spec.js'],
         tasks: ['env:test', 'mochaTest']
       },
       jsTest: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/*.spec.js',
-          '<%= yeoman.client %>/{app,components}/**/*.mock.js'
+          '<%= yeoman.unitClient %>/**/*.spec.js',
+          '<%= yeoman.unitClient %>/**/*.mock.js'
         ],
         tasks: ['newer:jshint:all', 'karma']
       },
@@ -137,8 +140,8 @@ module.exports = function (grunt) {
       ],
       test: {
         src: [
-          '<%= yeoman.client %>/{app,components}/**/*.spec.js',
-          '<%= yeoman.client %>/{app,components}/**/*.mock.js'
+          '<%= yeoman.unitClient %>/**/*.spec.js',
+          '<%= yeoman.unitClient %>/**/*.mock.js'
         ]
       }
     },
@@ -428,7 +431,7 @@ module.exports = function (grunt) {
       options: {
         reporter: 'spec'
       },
-      src: ['server/**/*.spec.js']
+      src: ['<%= yeoman.unitServer %>/**/*.spec.js']
     },
 
     protractor: {
@@ -560,7 +563,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -572,7 +575,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass', 
+      'injector:sass',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -590,7 +593,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', function(target) {
-    if (target === 'server') {
+    if (target === 'unit_server') {
       return grunt.task.run([
         'env:all',
         'env:test',
@@ -598,11 +601,11 @@ module.exports = function (grunt) {
       ]);
     }
 
-    else if (target === 'client') {
+    else if (target === 'unit_client') {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -610,12 +613,19 @@ module.exports = function (grunt) {
       ]);
     }
 
-    else if (target === 'e2e') {
+    else if (target === 'unit') {
+      return grunt.task.run([
+        'test:unit_server',
+        'test:unit_client'
+      ]);
+    }
+
+    else if (target === 'integration') {
       return grunt.task.run([
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass', 
+        'injector:sass',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -625,15 +635,16 @@ module.exports = function (grunt) {
       ]);
     }
 
-    else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+    else {
+      return grunt.task.run([
+        'test:unit'
+      ]);
+    }
   });
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass', 
+    'injector:sass',
     'concurrent:dist',
     'injector',
     'wiredep',
