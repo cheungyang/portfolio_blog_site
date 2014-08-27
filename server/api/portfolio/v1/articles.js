@@ -10,6 +10,10 @@ var VERSION = "v1";
 exports.ids = function(req, res) {
   var start = now();
   var ids = req.params.ids.split(";");
+  //FIXME remove this hack
+  ids.push(2);
+  ids.push(3);
+
   var results = model.get(ids);
 
   // Fetch related articles

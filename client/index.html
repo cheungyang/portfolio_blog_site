@@ -23,7 +23,6 @@
   </head>
   <body ng-app="portfolioBlogSiteApp">
 
-    <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -36,28 +35,20 @@
         </ul>
         <form class="navbar-form navbar-right" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="search" class="form-control" placeholder="Search" ng-model="search"/>
           </div>
         </form>
       </div>
     </div>
 
     <br/><br/><br/><br/>
-    
+
     <div class="container" role="main">
       <div class="row">
-        <div class="col-md-3">
-          <div id="shortcuts" class="display-none hidden-print hidden-xs hidden-sm affix" role="complementary">
-            <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#overview">Overview</a></li>
-              <li class=""><a href="#overview-type-links">Typography and links</a></li>
-              <li class=""><a href="#overview-normalize">Normalize.css</a></li>
-              <li class=""><a href="#overview-container">Containers</a></li>
-            </ul>
-          </div>
-        </div>
         <div class="col-md-9">
           <div ui-view=""></div>
+        </div>
+        <div class="col-md-3">
         </div>
       </div>
     </div>

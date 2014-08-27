@@ -1,4 +1,4 @@
-<div class="blog-article panel panel-default">
+<div id="article_{{article.id}}" class="blog-article panel panel-default" ng-repeat="article in articles | filter:search ">
   <div class="panel-body">
 
     <div class="blog-cover">
@@ -19,7 +19,7 @@
         <p ng-bind-html="article.content"/>
         <ul class="blog-related text-center">
           <li ng-repeat="related in article.related_articles">
-            <a class="thumbnail" href="{{related.url}}">
+            <a class="thumbnail" href="{{related.url}}" ng-show="related.title">
               <div class="blog-related-cover">
                 <img src="{{related.cover_image}}"/>
               </div>
@@ -30,16 +30,19 @@
       </div>
     </div>
 
-    <div class="blog-expandable expandable-collapse" ng-click="myData.doClick()">
+    <div class="blog-expandable expandable-collapse" ng-click="expandArticle(article.id)">
       <span class="text-center full-width glyphicon glyphicon-chevron-down">open</span>
       <span class="text-center display-none full-width glyphicon glyphicon-chevron-up">close</span>
     </div>
-
-
   </div>
-</div>
 
-<p ng-bind-html="article.content"/>
-<p ng-bind-html="article.content"/>
-<p ng-bind-html="article.content"/>
-<p ng-bind-html="article.content"/>
+  <div class="blog-shortcuts display-none hidden-print hidden-xs hidden-sm" role="complementary">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="#overview">Overview</a></li>
+      <li class=""><a href="#overview-type-links">Typography and links</a></li>
+      <li class=""><a href="#overview-normalize">Normalize.css</a></li>
+      <li class=""><a href="#overview-container">Containers</a></li>
+    </ul>
+  </div>
+
+</div>
