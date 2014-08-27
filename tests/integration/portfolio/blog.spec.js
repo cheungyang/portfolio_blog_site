@@ -28,7 +28,7 @@ describe('Main blog page', function() {
     // Number of related contents
     expect(all_related.count()).toBe(3);
     // Content of related contents
-    expect(one_related.$('.blog-cover').element(by.tagName('img')).getAttribute('src')).toMatch(/Swan4.jpg$/);
+    expect(one_related.$('.blog-related-cover').element(by.tagName('img')).getAttribute('src')).toMatch(/Swan4.jpg$/);
     expect(one_related.$('.blog-title').getText()).toBe('Look at this beautiful swan');
     expect(one_related.element(by.tagName('a')).getAttribute('href')).toMatch(/blog\/2$/);
   });
