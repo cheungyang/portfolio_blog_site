@@ -1,41 +1,45 @@
-<div class="blog-article">
-  <div class="blog-summary panel panel-default">
-    <div class="panel-body">
+<div class="blog-article panel panel-default">
+  <div class="panel-body">
 
-      <div class="blog-cover">
-        <div class="blog-heading">
-          <h1 class="blog-title">{{article.title}}</h1>
-          <span class="blog-date">{{article.date}}</span>
-        </div>
-        <img src="{{article.cover_image}}"/>
+    <div class="blog-cover">
+      <div class="blog-heading">
+        <h1 class="blog-title">{{article.title}}</h1>
+        <span class="blog-date">{{article.date}}</span>
       </div>
+      <img src="{{article.cover_image}}"/>
+    </div>
 
-      <ul class="blog-tags">
-        <li ng-repeat="tag in article.tags"><span class="label label-default glyphicon glyphicon-tag">{{tag}}</span></li>
-      </ul>
+    <ul class="blog-tags">
+      <li ng-repeat="tag in article.tags"><span class="label label-default glyphicon glyphicon-tag">{{tag}}</span></li>
+    </ul>
 
-      <p class="blog-content" ng-bind-html="article.summary"/>
-      <!--<p class="blog-content" ng-bind-html="article.content"/>-->
-
-      <div class="blog-expandable expandable-collapse" ng-click="myData.doClick()">
-        <span class="text-center full-width glyphicon glyphicon-chevron-down"></span>
-        <span class="text-center display-none full-width glyphicon glyphicon-chevron-up"></span>
-      </div>
-
-      <div class="row">
-        <div class="blog-related col-md-3">
-          <ul>
-            <li ng-repeat="related in article.related_articles">
-              <a class="thumbnail" href="{{related.url}}">
-                <div class="blog-related-cover">
-                  <img src="{{related.cover_image}}"/>
-                </div>
-                <h3 class="blog-title text-center">{{related.title}}</h3>
-              </a>
-            </li>
-          </ul>
-        </div>
+    <div class="blog-main">
+      <p class="blog-summary" ng-bind-html="article.summary">
+      <div class="blog-content display-none">
+        <p ng-bind-html="article.content"/>
+        <ul class="blog-related text-center">
+          <li ng-repeat="related in article.related_articles">
+            <a class="thumbnail" href="{{related.url}}">
+              <div class="blog-related-cover">
+                <img src="{{related.cover_image}}"/>
+              </div>
+              <h3 class="blog-title text-center">{{related.title}}</h3>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+
+    <div class="blog-expandable expandable-collapse" ng-click="myData.doClick()">
+      <span class="text-center full-width glyphicon glyphicon-chevron-down">open</span>
+      <span class="text-center display-none full-width glyphicon glyphicon-chevron-up">close</span>
+    </div>
+
+
   </div>
 </div>
+
+<p ng-bind-html="article.content"/>
+<p ng-bind-html="article.content"/>
+<p ng-bind-html="article.content"/>
+<p ng-bind-html="article.content"/>
