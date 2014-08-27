@@ -42,31 +42,25 @@
       </div>
     </div>
 
-    <br/><br/><br/>
-
+    <br/><br/><br/><br/>
+    
     <div class="container" role="main">
       <div class="row">
         <div class="col-md-3">
-          <div class="hidden-print hidden-xs hidden-sm affix" role="complementary">
-            <ul class="nav">
-                <li class="">
-                  <a href="#overview">Overview</a>
-                  <ul class="nav">
-                    <li><a href="#overview-doctype">HTML5 doctype</a></li>
-                    <li><a href="#overview-mobile">Mobile first</a></li>
-                    <li class=""><a href="#overview-type-links">Typography and links</a></li>
-                    <li class=""><a href="#overview-normalize">Normalize.css</a></li>
-                    <li class=""><a href="#overview-container">Containers</a></li>
-                  </ul>
-                </li>
+          <div id="shortcuts" class="display-none hidden-print hidden-xs hidden-sm affix" role="complementary">
+            <ul class="nav nav-pills nav-stacked">
+              <li class="active"><a href="#overview">Overview</a></li>
+              <li class=""><a href="#overview-type-links">Typography and links</a></li>
+              <li class=""><a href="#overview-normalize">Normalize.css</a></li>
+              <li class=""><a href="#overview-container">Containers</a></li>
             </ul>
           </div>
-        </div><!-- /.col-md-12 -->
+        </div>
         <div class="col-md-9">
           <div ui-view=""></div>
-        </div><!-- /.col-md-12 -->
+        </div>
       </div>
-    </div> <!-- /container -->
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>

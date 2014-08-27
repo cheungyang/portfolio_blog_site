@@ -86,3 +86,17 @@ ul.blog-related {
     height: 5px;
   }
 }
+
+#shortcuts {
+  width: 250;  // FIXME need to find a better way to handle responsive grid
+  z-index: 300;
+
+  li {
+    @include transition(all, 0.3s, ease-in-out);
+    @include border-radius(4px, 4px);
+    background: #eee;
+    margin-left: 30%;
+    border: 1px #ddd solid;
+    text-align: right;
+  }
+}
