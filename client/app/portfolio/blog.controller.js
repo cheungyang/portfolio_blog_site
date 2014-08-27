@@ -10,4 +10,12 @@ angular.module('portfolioBlogSiteApp')
       article.date = [date.getFullYear(),date.getMonth()+1,date.getDate()].join('-');
       $scope.article = article;
     });
+
+
+    $scope.myData = {};
+    $scope.myData.doClick = function() {
+      $('.blog-content').html($scope.article.content);
+      $('.blog-expandable').removeClass('expandable-collapse').addClass('expandable-expand')
+        .find('.glyphicon').toggle('display-none');
+    }
   });

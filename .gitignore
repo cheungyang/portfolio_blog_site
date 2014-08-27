@@ -3,6 +3,7 @@ public
 .tmp
 .sass-cache
 .idea
+.DS-store
 client/bower_components
 dist
 /server/config/local.env.js

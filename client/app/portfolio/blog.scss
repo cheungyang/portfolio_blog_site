@@ -1,6 +1,31 @@
+@import "compass";
+
+$expandable-slide-y: 25px;
+$expandable-hide-y: 200px;
+
 .blog-article {
   .blog-cover {
+    position: relative;
     height: 200px;
+    overflow: hidden;
+    .blog-heading{
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 200;
+      padding: 10px 40px;
+      color: white;
+    }
+    img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+    }
+  }
+
+  .blog-related-cover {
+    max-height: 150px;
     overflow: hidden;
     img {
       width: 100%;
@@ -8,7 +33,7 @@
   }
 
   ul.blog-tags {
-    padding: 10px 0px;
+    padding: 10px 0 20px 0;
     li {
       float: left;
       list-style-type: none;
@@ -16,12 +41,42 @@
     }
   }
 
-  ul.blog-related {
+  .blog-related {
     li {
       list-style-type: none;
     }
     h3 {
       font-size: 14px;
     }
+    .thumbnail {
+      width: 200px;
+    }
+  }
+}
+
+.blog-expandable {
+  @include transition(all, 0.3s, ease-in-out);
+  position: relative;
+  color: #ccc;
+  &:hover {
+    color: #111;
+  }
+
+  &.expandable-collapse {
+    @include filter-gradient(#00ffff, #ffffff, vertical); // IE6-9 (should be #00ffff?)
+    @include background-image(linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 90%,rgba(255,255,255,1) 100%));
+    top: -1 * $expandable-hide-y;
+    padding-top: $expandable-hide-y;
+    margin-bottom: -1 * $expandable-hide-y;
+    height: $expandable-hide-y + 5px;
+
+    &:hover {
+      @include transform(translateY($expandable-slide-y));
+      margin-bottom: -1 * ($expandable-hide-y - $expandable-slide-y);
+    }
+  }
+
+  &.expandable-expand {
+    height: 5px;
   }
 }
