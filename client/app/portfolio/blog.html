@@ -1,4 +1,4 @@
-<div id="article_{{article.id}}" class="blog-article panel panel-default" ng-repeat="article in articles | filter:search ">
+<div id="article-{{article.id}}" class="blog-article panel panel-default" ng-repeat="article in articles | filter:search ">
   <div class="panel-body">
 
     <div class="blog-cover">
@@ -36,13 +36,12 @@
     </div>
   </div>
 
-  <div class="blog-shortcuts display-none hidden-print hidden-xs hidden-sm" role="complementary">
+  <div id="article-sc-{{article.id}}" class="blog-shortcuts display-none hidden-print hidden-xs hidden-sm" role="complementary">
     <ul class="nav nav-pills nav-stacked">
-      <li class="active"><a href="#overview">Overview</a></li>
-      <li class=""><a href="#overview-type-links">Typography and links</a></li>
-      <li class=""><a href="#overview-normalize">Normalize.css</a></li>
-      <li class=""><a href="#overview-container">Containers</a></li>
+      <li class="active"><a href="#overview">Overview {{article.id}}</a></li>
+      <li class=""><a href="#overview-type-links">Typography and links {{article.id}}</a></li>
+      <li class=""><a href="#overview-normalize">Normalize.css {{article.id}}</a></li>
+      <li class=""><a href="#overview-container">Containers {{article.id}}</a></li>
     </ul>
   </div>
-
 </div>

@@ -15,8 +15,9 @@ angular.module('portfolioBlogSiteApp')
       $scope.articles = articles;
     });
 
+/*
     var _toggleShortcuts = function(id) {
-      var $article = $('#article_'+id);
+      var $article = $('#article-'+id);
       var $main = $article.find('.blog-main');
       var $shortcuts = $article.find('.blog-shortcuts');
       var $shortcutLis = $shortcuts.find('li');
@@ -97,9 +98,40 @@ angular.module('portfolioBlogSiteApp')
         $(window).unbind('scroll.switchPosStrategy_'+id, switchPosStrategy);
       }
     }
+*/
+    var _toggleShortcuts = function(id) {
+      var $right = $('#right');
+      var $article = $('#article-'+id);
+      var $shortcuts = $('#article-sc-'+id);
+      var $shortcutLis = $shortcuts.find('li');
+
+      if ($shortcuts.hasClass('display-none')) {
+        $right.empty().append($shortcuts);
+        $shortcuts.removeClass('display-none');
+
+        // Shortcut li animation
+        var i = 0;
+        $shortcutLis.each(function(){
+          var $that = $(this);
+          $that.addClass('display-none').css({
+            'margin-left': '30%',
+            'opacity': 0
+          });
+          setTimeout(function(){
+            $that.removeClass('display-none').css({
+              'margin-left': 0,
+              'opacity': 1
+            });
+          }, i * 100);
+          i++;
+        });
+      } else {
+        $shortcuts.addClass('display-none').appendTo($article);
+      }
+    }
 
     var _expandArticle = function(id) {
-      var $article = $('#article_'+id);
+      var $article = $('#article-'+id);
       var $expandable = $article.find('.blog-expandable');
       var $texts = $article.find('.blog-content, .blog-summary');
       var $main = $article.find('.blog-main');
@@ -137,6 +169,7 @@ angular.module('portfolioBlogSiteApp')
     }
 
     $scope.expandArticle = function(id) {
+      var $article = $('#article-'+id);
       _expandArticle(id);
       _toggleShortcuts(id);
     }

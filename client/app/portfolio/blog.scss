@@ -88,8 +88,8 @@ ul.blog-related {
 }
 
 .blog-shortcuts {
-  width: 250px;
-  z-index: 300;
+  position: fixed;
+  top: 300px;
 
   li {
     @include transition(all, 0.3s, ease-in-out);
