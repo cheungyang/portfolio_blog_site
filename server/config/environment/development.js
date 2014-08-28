@@ -3,10 +3,19 @@
 // Development specific configuration
 // ==================================
 module.exports = {
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/portfolioblogsite-dev'
-  },
+  dataSource: {
+    mysql: {
+      host: 'localhost',
+      user: 'root',
+      password: 'root',
+      database: 'blogalvacheungcom',
+      port: 8889
+    },
 
-  seedDB: true
+    fs: {
+      folder: '../datasources/fs'
+    },
+
+    default: 'mysql'
+  }
 };

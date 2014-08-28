@@ -1,21 +1,24 @@
 'use strict';
 
 var now = require("performance-now");
-var _ = require('lodash');
+var config = require('../../../config/environment');
+var model = require("./models/articles." + config.dataSource.default);
 
-var model = require("./models/articles.fs");
 var VERSION = "v1";
 
-// Get list of things
-exports.ids = function(req, res) {
+/**
+ *  Get a list of articles
+ **/
+var _getIds = function(req, res, next) {
   var start = now();
   var ids = req.params.ids.split(";");
-  //FIXME remove this hack
-  ids.push(2);
-  ids.push(3);
 
-  var results = model.get(ids);
+  model.get(ids, function(results){
+    _formatResults(req, res, next, results);
+  });
+}
 
+var _formatResults = function(req, res, next, results) {
   // Fetch related articles
   for(var i=results.length-1; i>=0; i--) {
     var related_articles_ids = results[i].related_article_ids;
@@ -39,4 +42,11 @@ exports.ids = function(req, res) {
     _version: VERSION,
     _elapsed: (now()-start).toFixed(3)
   });
+
+  next();
 };
+
+
+module.exports = {
+  ids: _getIds
+}

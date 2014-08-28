@@ -1,10 +1,12 @@
 'use strict';
 
 var fs = require('fs');
+var config = require('../../../../config/environment');
 
-var FS_FOLDER = "../datasources/fs";
-
-exports.get = function(ids) {
+/**
+ *
+ */
+var _getIds = function(ids, callback) {
   var jsonArr = [];
 
   if (!ids.length) {
@@ -13,7 +15,7 @@ exports.get = function(ids) {
 
   for (var i=0, j=ids.length; i<j; i++) {
     var id = ids[i];
-    var filename = FS_FOLDER + '/article_' + id + '.json';
+    var filename = config.dataSource.fs.folder + '/article_' + id + '.json';
     var json = {};
     try {
       json = require(filename);
@@ -24,5 +26,10 @@ exports.get = function(ids) {
     }
     jsonArr.push(json);
   }
-  return jsonArr;
-};
+
+  callback.call(this, jsonArr);
+}
+
+module.exports = {
+  get: _getIds
+}

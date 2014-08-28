@@ -16,7 +16,9 @@
     "ejs": "~0.8.4",
     "composable-middleware": "^0.3.0",
     "connect-mongo": "^0.4.1",
-    "performance-now": "^0.1.4"
+    "performance-now": "^0.1.4",
+    "mysql": "~2.0",
+    "express-myconnection": "~0.1.4"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",

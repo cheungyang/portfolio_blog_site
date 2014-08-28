@@ -1,10 +1,21 @@
 'use strict';
 
 // Test specific configuration
-// ===========================
+// ==================================
 module.exports = {
-  // MongoDB connection options
-  mongo: {
-    uri: 'mongodb://localhost/portfolioblogsite-test'
+  dataSource: {
+    mysql: {
+      host: 'localhost',
+      user: 'root',
+      password: 'root',
+      database: 'blogalvacheungcom',
+      port: 8889
+    },
+
+    fs: {
+      folder: '../datasources/fs'
+    },
+
+    default: 'fs'
   }
 };
