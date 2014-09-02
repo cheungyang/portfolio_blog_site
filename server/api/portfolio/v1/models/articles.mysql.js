@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var config = require('../../../../config/environment');
 
 var PREPARE_ARTICLE_SQL = 'SELECT * FROM wp_posts WHERE ID in (?)';
-var PREPARE_META_SQL = 'SELECT * FROM wp_postmeta WHERE post_id = ?';
+var PREPARE_META_SQL = 'SELECT * FROM wp_postmeta WHERE post_id in (?)';
 
 var _getIds = function(ids, callback) {
   var jsonArr = [];
@@ -38,7 +38,7 @@ var _getIds = function(ids, callback) {
       if (result) {
         json = {
           id: result.ID,
-          type: "article",
+          type: result.post_type,
           title: result.post_title ? result.post_title : '',
           summary: result.post_content ? result.post_content.substr(0, 400) + '...' : '',
           content: result.post_content ? result.post_content : '',
@@ -57,7 +57,9 @@ var _getIds = function(ids, callback) {
       jsonArr.push(json);
     }
 
-    callback.call(this, jsonArr);
+    if (callback) {
+      callback.call(this, jsonArr);
+    }
   });
 }
 

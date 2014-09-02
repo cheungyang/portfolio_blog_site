@@ -5,12 +5,12 @@ var config = require('../../../config/environment');
 var model = require("./models/articles." + config.dataSource.default);
 
 var VERSION = "v1";
-
+var start;
 /**
  *  Get a list of articles
  **/
 var _getIds = function(req, res, next) {
-  var start = now();
+  start = now();
   var ids = req.params.ids.split(";");
 
   model.get(ids, function(results){

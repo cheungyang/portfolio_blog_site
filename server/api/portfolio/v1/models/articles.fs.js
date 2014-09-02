@@ -27,7 +27,9 @@ var _getIds = function(ids, callback) {
     jsonArr.push(json);
   }
 
-  callback.call(this, jsonArr);
+  if (callback) {
+    callback.call(this, jsonArr);
+  }
 }
 
 module.exports = {
