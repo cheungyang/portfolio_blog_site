@@ -18,7 +18,8 @@
     "connect-mongo": "^0.4.1",
     "performance-now": "^0.1.4",
     "mysql": "~2.0",
-    "express-myconnection": "~0.1.4"
+    "q": "~1.0.1",
+    "node-cache": "~1.0.0"
   },
   "devDependencies": {
     "connect-livereload": "~0.4.0",

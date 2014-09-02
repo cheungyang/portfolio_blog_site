@@ -1,12 +1,18 @@
 'use strict';
 
 var fs = require('fs');
+var q = require('q');
 var config = require('../../../../config/environment');
 
+
 /**
+ * getIds - get article jsons
  *
+ * @param  {array} ids      list of article ids
+ * @return {object}         q.deferred
  */
-var _getIds = function(ids, callback) {
+function getIds(ids) {
+  var deferred = q.defer();
   var jsonArr = [];
 
   if (!ids.length) {
@@ -26,12 +32,25 @@ var _getIds = function(ids, callback) {
     }
     jsonArr.push(json);
   }
+  // Always resolve immediately
+  deferred.resolve(jsonArr);
 
-  if (callback) {
-    callback.call(this, jsonArr);
-  }
+  return deferred.promise;
+}
+
+
+/**
+ * getLatest - dump function to mock getting articles by date
+ *
+ * @param  {string} latestDate does not matter
+ * @param  {array} exceptIds   does not matter
+ * @return {type}              q.deferred
+ */
+function getLatest(latestDate, exceptIds) {
+  return getIds([1,2]);
 }
 
 module.exports = {
-  get: _getIds
+  getIds: getIds,
+  getLatest: getLatest
 }

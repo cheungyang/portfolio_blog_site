@@ -11,9 +11,9 @@ angular.module('portfolioBlogSiteApp')
       .state('index', {
         url: '/',
         templateUrl: 'app/portfolio/blog.html',
-        controller: 'BlogController',
-        data: {
+        controller: 'BlogController'
+        /*,data: {
           id: 1
-        }
+        }*/
       });
   });

@@ -2,9 +2,9 @@
 
 angular.module('portfolioBlogSiteApp')
   .controller('BlogController', function ($scope, $state, $stateParams, $http) {
-    var id = $stateParams.id ? $stateParams.id : $state.current.data.id;
+    var id = $stateParams.id ? $stateParams.id : '';
 
-    $http.get('/api/portfolio/v1/articles/'+id).success(function(json) {
+    $http.get('/api/portfolio/v1/articles'+ (id ? '/'+id : '').success(function(json) {
       var articles = json.results;
 
       for(var i=0; i<articles.length; i++) {
