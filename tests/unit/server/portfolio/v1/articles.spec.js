@@ -18,26 +18,26 @@ describe('Article v1 GET API', function() {
       });
   });
 
-  it('should return 1 object when one id is presented', function(done) {
+  it('should return 1+2 object when one id is presented', function(done) {
     request(app)
       .get('/api/portfolio/v1/articles/1')
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body.size.should.equal(1);
+        res.body.size.should.equal(3);
         res.body.results[0].id.should.equal(1);
-        res.body.results[0].status.should.equal(200);
+        res.body.results[0]._status.should.equal(200);
         done();
       });
   });
 
-  it('should return 3 objects when three ids are presented', function(done) {
+  it('should return 3+2 objects when three ids are presented', function(done) {
     request(app)
       .get('/api/portfolio/v1/articles/1;2;3')
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body.size.should.equal(3);
+        res.body.size.should.equal(5);
         done();
       });
   });
@@ -48,7 +48,7 @@ describe('Article v1 GET API', function() {
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body.results[0].status.should.equal(404);
+        res.body.results[0]._status.should.equal(404);
         done();
       });
   });

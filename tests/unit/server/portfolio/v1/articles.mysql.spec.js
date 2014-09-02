@@ -16,7 +16,7 @@ describe('Article mysql model library', function() {
   it('should return 200 status for a valid id ', function() {
     (function(){
       lib.getIds(282).then(function(results){
-        results[0].should.have.property('status', 200);
+        results[0].should.have.property('_status', 200);
       })
     }).should.not.throw();
   });
@@ -24,7 +24,7 @@ describe('Article mysql model library', function() {
   it('should return 404 status for an invalid id ', function() {
     (function(){
       lib.getIds(-999).then(function(results){
-        results[0].should.have.property('status', 404);
+        results[0].should.have.property('_status', 404);
       })
     }).should.not.throw();
   });

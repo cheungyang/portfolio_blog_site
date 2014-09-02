@@ -8,7 +8,6 @@ var model = require('./models/articles.' + config.dataSource.default);
 var VERSION = "v1";
 var start;
 
-
 /**
  * articlesEndpoint - Get a list of articles
  *
@@ -28,11 +27,12 @@ function articlesEndpoint(req, res, next) {
   }
 
   // Filling the page by getting addtional IDs
-  //var latestDate = '2014-08-01';
-  //deferQueue.push(model.getLatest(latestDate, ids));
+  var latestDate = '2014-08-01';
+  deferQueue.push(model.getLatest(latestDate, ids));
 
   q.all(deferQueue).done(function (promiseResults) {
-    //promiseResults.map(_getRelatedArticles);
+    //TODO promiseResults.map(_getRelatedArticles);
+    //
     var jsonObj = _formatResults(promiseResults);
     jsonObj.debug = _debugInfo(req);
     res.json(jsonObj);
@@ -50,10 +50,18 @@ function articlesEndpoint(req, res, next) {
  * @return {object}               json object
  */
 function _formatResults(promiseResults, req) {
+  // Only add expand:true to results that are explicitly fetched
+  if (promiseResults[0].length) {
+    promiseResults[0].map(function(result){
+      result['_expand'] = true;
+    });
+  }
+
+  var results = promiseResults[0].concat(promiseResults[1]);
+
   return {
-    results: promiseResults[0],
-    //more_results: promiseResults[1],
-    size: promiseResults[0] ? promiseResults[0].length : 0,
+    results: results,
+    size: results.length
   };
 }
 

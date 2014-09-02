@@ -25,10 +25,10 @@ function getIds(ids) {
     var json = {};
     try {
       json = require(filename);
-      json.status = 200;
+      json._status = 200;
     } catch (err){
       json.id = id;
-      json.status = 404;
+      json._status = 404;
     }
     jsonArr.push(json);
   }
